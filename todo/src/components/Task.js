@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import CompletedTask from './CompletedTask'
 
 const getTodo = () => {
-    let list = JSON.parse(localStorage.getItem(tasks))
+    let list = JSON.parse(localStorage.getItem('tasks'))
     if (list) {
         return list
     }else{
@@ -11,7 +11,7 @@ const getTodo = () => {
 }
 
 const getComplete = () => {
-    let list = JSON.parse(localStorage.getItem(completed))
+    let list = JSON.parse(localStorage.getItem('completed'))
     if (list) {
         return list
     }else{
@@ -42,11 +42,11 @@ const handlecheck = (task) => {
 }
 
 useEffect(() => {
-  localStorage.setItem("tasks",JSON.stringify(Todo))
+  localStorage.setItem('tasks',JSON.stringify(Todo))
 }, [Todo])
 
 useEffect(() => {
-    localStorage.setItem("tasks",JSON.stringify(completed))
+    localStorage.setItem('completed',JSON.stringify(completed))
 }, [completed])
 
 
