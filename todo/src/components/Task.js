@@ -9,22 +9,18 @@ const [completed, setcompleted] = useState([])
 const handleAdd = () => {
     let newTask = text;
     settext("");
-    setTodo([...Todo,newTask]);
-       
+    if (text !== ""){
+        setTodo([...Todo,newTask]);
+    }   
 }
 const setvalue = (event) =>{
     settext(event.target.value)
 }
-
 const handlecheck = (task) => {
     setcompleted([...completed, task]);
     const newTodo = Todo.filter((element) => element !== task);
     setTodo(newTodo);
 }
-
-
-
-
   return (
     <>
     <div className="input-group my-3 p-3">
@@ -42,8 +38,7 @@ const handlecheck = (task) => {
                     onChange={() => handlecheck(e)}
                 />
             </div>
-            <input type="text" className="form-control"  value={e} readOnly/>
-            
+            <input type="text" className="form-control"  value={e} readOnly/> 
         </div>
     ))}    
     </div>
