@@ -1,10 +1,29 @@
 import React, { useState } from 'react'
 import CompletedTask from './CompletedTask'
 
+const getTodo = () => {
+    let list = JSON.parse(localStorage.getItem(tasks))
+    if (list) {
+        return list
+    }else{
+        return []
+    }
+}
+
+const getComplete = () => {
+    let list = JSON.parse(localStorage.getItem(completed))
+    if (list) {
+        return list
+    }else{
+        return []
+    }
+    
+}
+
 export default function Task() {
 const [text, settext] = useState("")
-const [Todo, setTodo] = useState([])
-const [completed, setcompleted] = useState([])
+const [Todo, setTodo] = useState(getTodo())
+const [completed, setcompleted] = useState(getComplete())
 
 const handleAdd = () => {
     let newTask = text;
@@ -21,6 +40,16 @@ const handlecheck = (task) => {
     const newTodo = Todo.filter((element) => element !== task);
     setTodo(newTodo);
 }
+
+useEffect(() => {
+  localStorage.setItem("tasks",JSON.stringify(Todo))
+}, [Todo])
+
+useEffect(() => {
+    localStorage.setItem("tasks",JSON.stringify(completed))
+}, [completed])
+
+
   return (
     <>
     <div className="input-group my-3 p-3">
